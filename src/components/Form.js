@@ -1,6 +1,6 @@
 import React from "react";
 
-function Form({inputText,setInputText, tarefas, setTarefas}){
+function Form({setStatus, inputText,setInputText, tarefas, setTarefas}){
 
 	const inputTextHandler = (e) =>{
 		console.log(e.target.value);
@@ -15,6 +15,10 @@ function Form({inputText,setInputText, tarefas, setTarefas}){
 		setInputText('');
 	};
 
+	const statusHandler = (e) => {
+		setStatus(e.target.value);
+	}
+
 	return(
 		<form>
 			<input value = {inputText} onChange={inputTextHandler} type="text" className="tarefa-input" />
@@ -22,7 +26,7 @@ function Form({inputText,setInputText, tarefas, setTarefas}){
 				<i className="fas fa-plus-square"></i>
 			</button>
 			<div className="select">
-				<select name="tarefas" className="tarefa-filtro">
+				<select onChange={statusHandler} name="tarefas" className="tarefa-filtro">
 					<option value="todas">Todas</option>
 					<option value="completas">Completas</option>
 					<option value="incompletas">Incompletas</option>

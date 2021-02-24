@@ -18,7 +18,7 @@ function Tarefa({text, tarefa, tarefas, setTarefas}){
 	return(
 
 		<div className="tarefa">
-			<li className="tarefa-item">{text}</li>
+			<li className={`tarefa-item ${tarefa.completado ? "completado" : ''}`}>{text}</li>
 			<button onClick={completeHandler} className="completar-btn">
 				<i className="fas fa-check"></i>
 			</button>
