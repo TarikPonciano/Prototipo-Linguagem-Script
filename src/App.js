@@ -13,7 +13,12 @@ function App() {
   const [filteredTarefas, setFilteredTarefas] = useState([]);
 
   useEffect(() => {
+    getLocalTarefas();
+  },[]);
+
+  useEffect(() => {
     filterHandler();
+    saveLocalTarefas();
   }, [tarefas, status]);
 
   const filterHandler = () => {
@@ -28,7 +33,23 @@ function App() {
       setFilteredTarefas(tarefas);
       break;
     }
-  }
+  };
+
+  const saveLocalTarefas = () => {
+    
+      localStorage.setItem("tarefas", JSON.stringify(tarefas));
+    
+  };
+
+  const getLocalTarefas = () => {
+    if (localStorage.getItem("tarefas") === null){
+      localStorage.setItem("tarefas", JSON.stringify([]));
+    } else{
+      let tarefasLocal = JSON.parse(localStorage.getItem("tarefas"))
+      
+      setTarefas(tarefasLocal);
+    }
+  };
 
   return (
     <div className="App">
